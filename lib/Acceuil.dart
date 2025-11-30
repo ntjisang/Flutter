@@ -216,7 +216,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// 🔹 Widget Carte Maison
+//  Widget Carte Maison
 class HouseCard extends StatelessWidget {
   final String imageUrl;
   final String title;

@@ -57,7 +57,7 @@ class DakarPage extends StatelessWidget {
 
       body: Column(
         children: [
-          // 🔍 BARRE DE RECHERCHE
+          // BARRE DE RECHERCHE
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
