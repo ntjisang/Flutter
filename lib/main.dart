@@ -1,225 +1,235 @@
 import 'package:flutter/material.dart';
-import 'acceuil.dart'; // ✅ On importe la page d’accueil
+import 'package:firebase_auth/firebase_auth.dart';
+import 'acceuil.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-// 🌟 Application principale
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(), // Page de démarrage = connexion
-    );
-  }
-}
-
-// 🔸 PAGE DE CONNEXION
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> login() async {
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty) {
+      _showMessage("Veuillez remplir tous les champs", Colors.red);
+      return;
+    }
+
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      // ✅ Connexion réussie
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      _showMessage(e.message ?? "Erreur de connexion", Colors.red);
+    }
+  }
+
+  void _showMessage(String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: color),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.orange.shade800, Colors.orange.shade400],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      body: Stack(
+        children: [
+          // Image de fond
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/bank.jpeg'),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 80),
-            const Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+
+          Column(
+            children: [
+              const SizedBox(height: 80),
+
+              // Icon + Login
+              Column(
+                children: const [
+                  Icon(
+                    Icons.person,
+                    size: 140,
+                    color: Color.fromARGB(255, 214, 182, 20),
+                  ),
                   Text(
                     "Login",
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 40,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Welcome Back",
-                    style: TextStyle(color: Colors.white70, fontSize: 18),
-                  ),
                 ],
               ),
-            ),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60),
-                    topRight: Radius.circular(60),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(height: 60),
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(255, 95, 27, 0.3),
-                              blurRadius: 20,
-                              offset: Offset(0, 10),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            // Email
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(color: Colors.grey),
-                                ),
-                              ),
-                              child: TextField(
-                                controller: emailController,
-                                decoration: const InputDecoration(
-                                  hintText: "Email",
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            // Password
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              child: TextField(
-                                controller: passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(height: 40),
 
-                      // 🔹 Bouton LOGIN
-                      GestureDetector(
-                        onTap: () {
-                          if (emailController.text.isEmpty ||
-                              passwordController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  "Veuillez remplir tous les champs.",
-                                ),
-                                backgroundColor: Colors.redAccent,
+              const SizedBox(height: 30),
+
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFFfCA),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(30),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        // Logo
+                        Column(
+                          children: const [
+                            Image(
+                              image: AssetImage('assets/loge.png'),
+                              width: 40,
+                              height: 40,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              "SenLogement",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
                               ),
-                            );
-                          } else {
-                            Navigator.pushReplacement(
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // Email
+                        _inputField(
+                          controller: emailController,
+                          label: "Email",
+                          icon: Icons.email_outlined,
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // Password
+                        _inputField(
+                          controller: passwordController,
+                          label: "Mot de passe",
+                          icon: Icons.lock_outline,
+                          isPassword: true,
+                        ),
+
+                        const SizedBox(height: 50),
+
+                        // Login Button
+                        GestureDetector(
+                          onTap: login,
+                          child: Container(
+                            height: 50,
+                            margin: const EdgeInsets.symmetric(horizontal: 50),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFB59F2C),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Sign in",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // Register link
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                                builder: (context) =>
+                                const RegisterPage(),
                               ),
                             );
-                          }
-                        },
-                        child: Container(
-                          height: 50,
-                          margin: const EdgeInsets.symmetric(horizontal: 50),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.orange.shade900,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          },
+                          child: const Text(
+                            "Register",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 181, 156, 32),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23,
                             ),
                           ),
                         ),
-                      ),
-
-                      const SizedBox(height: 30),
-                      const Text(
-                        "Continue with social media",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(height: 30),
-
-                      // Réseaux sociaux
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            height: 50,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.blue,
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Facebook",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 30),
-                          Container(
-                            height: 50,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.black87,
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "GitHub",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _inputField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+    bool isPassword = false,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 153, 149, 149).withOpacity(0.7),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 6,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        obscureText: isPassword,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          labelText: label,
+          prefixIcon: Icon(icon),
         ),
       ),
     );
