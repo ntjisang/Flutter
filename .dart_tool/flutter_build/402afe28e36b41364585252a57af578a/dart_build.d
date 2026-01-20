@@ -1,0 +1,1 @@
+ C:\\projetful\\senlogement\\.dart_tool\\flutter_build\\402afe28e36b41364585252a57af578a\\dart_build_result.json: 

@@ -1,0 +1,41 @@
+com.example.senlogement.app-jetified-play-services-base-18.0.1-0 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\085c95e05a5ef22e31fc755d5b141124\transformed\jetified-play-services-base-18.0.1\res
+com.example.senlogement.app-jetified-savedstate-1.2.1-1 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\13f40eec596e8ce2c801c4be2eb950cb\transformed\jetified-savedstate-1.2.1\res
+com.example.senlogement.app-fragment-1.7.1-2 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\1f7c45a8e427e4987ac1396475eb6a1d\transformed\fragment-1.7.1\res
+com.example.senlogement.app-jetified-activity-1.8.1-3 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\1ffa01e5faf11d0f1b23dacdb5629649\transformed\jetified-activity-1.8.1\res
+com.example.senlogement.app-jetified-datastore-preferences-release-4 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\2540b291effcfefc0b56909d3623a9b1\transformed\jetified-datastore-preferences-release\res
+com.example.senlogement.app-jetified-play-services-basement-18.4.0-5 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\2c86bbbcd014c095fbe98040df1dc320\transformed\jetified-play-services-basement-18.4.0\res
+com.example.senlogement.app-lifecycle-livedata-2.7.0-6 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\2d710b77d107757aab7d375f93fed76b\transformed\lifecycle-livedata-2.7.0\res
+com.example.senlogement.app-jetified-core-ktx-1.13.1-7 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\3d00d93013c5b3d6a29286ac43703b6f\transformed\jetified-core-ktx-1.13.1\res
+com.example.senlogement.app-lifecycle-viewmodel-2.7.0-8 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\460ff6f5f2f14ba7313062f3b146ad9a\transformed\lifecycle-viewmodel-2.7.0\res
+com.example.senlogement.app-jetified-lifecycle-process-2.7.0-9 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\504636b425b8b1fd059c74ba5a65a107\transformed\jetified-lifecycle-process-2.7.0\res
+com.example.senlogement.app-jetified-datastore-core-release-10 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\55b309535d63303116146d50e1cbe082\transformed\jetified-datastore-core-release\res
+com.example.senlogement.app-jetified-firebase-common-22.0.1-11 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\57a3bc56f43a337ec3a46fb211e4d3c0\transformed\jetified-firebase-common-22.0.1\res
+com.example.senlogement.app-browser-1.4.0-12 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\606b918f39a00254621c3726c9ac6d8c\transformed\browser-1.4.0\res
+com.example.senlogement.app-jetified-credentials-1.2.0-rc01-13 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\6a9bd98b90139d2e50cf0aec796c9bfe\transformed\jetified-credentials-1.2.0-rc01\res
+com.example.senlogement.app-jetified-window-java-1.2.0-14 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\735f025cd27cb5a1f16c56a967044f36\transformed\jetified-window-java-1.2.0\res
+com.example.senlogement.app-core-runtime-2.2.0-15 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\75eb96fda8175141e4090296e08d8010\transformed\core-runtime-2.2.0\res
+com.example.senlogement.app-jetified-datastore-release-16 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\76dbe67f8f184b5a45a47c7d5726d6e6\transformed\jetified-datastore-release\res
+com.example.senlogement.app-lifecycle-livedata-core-2.7.0-17 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\77d2eb5a06e962b2d80298b522f5efbd\transformed\lifecycle-livedata-core-2.7.0\res
+com.example.senlogement.app-jetified-profileinstaller-1.3.1-18 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\7fd16e85379eaf535e488ce90e21c9f8\transformed\jetified-profileinstaller-1.3.1\res
+com.example.senlogement.app-lifecycle-runtime-2.7.0-19 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\9bd37af326a5d3792ee401084997029c\transformed\lifecycle-runtime-2.7.0\res
+com.example.senlogement.app-jetified-credentials-play-services-auth-1.2.0-rc01-20 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\9ddae485efe36b2121e03cd470177dbf\transformed\jetified-credentials-play-services-auth-1.2.0-rc01\res
+com.example.senlogement.app-jetified-play-services-auth-20.7.0-21 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\b2e6d40e2e948d62b76552580e73dcaa\transformed\jetified-play-services-auth-20.7.0\res
+com.example.senlogement.app-core-1.13.1-22 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\b3c10aea4b341c1c62738dbd370d2da4\transformed\core-1.13.1\res
+com.example.senlogement.app-jetified-tracing-1.2.0-23 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\b60d150c0f7a7f9017cab2ff48b203d4\transformed\jetified-tracing-1.2.0\res
+com.example.senlogement.app-jetified-core-1.0.0-24 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\ba57bc17da587030b028d093110612d8\transformed\jetified-core-1.0.0\res
+com.example.senlogement.app-jetified-core-common-2.0.3-25 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\c48af60abab870bab6db3b034bb21e2a\transformed\jetified-core-common-2.0.3\res
+com.example.senlogement.app-jetified-annotation-experimental-1.4.0-26 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\d66d5e13c5c9fba74da4203216ab6792\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.senlogement.app-jetified-startup-runtime-1.1.1-27 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\e163ef5a2b9bb49c526baaac1ecedea4\transformed\jetified-startup-runtime-1.1.1\res
+com.example.senlogement.app-jetified-lifecycle-livedata-core-ktx-2.7.0-28 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\e8abcb9996240786a446f81123d161c1\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
+com.example.senlogement.app-jetified-datastore-preferences-core-release-29 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\e97ce12afed95459d9bd6af7c8e46822\transformed\jetified-datastore-preferences-core-release\res
+com.example.senlogement.app-jetified-window-1.2.0-30 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\ea185b7f540868a01efad6c11552e316\transformed\jetified-window-1.2.0\res
+com.example.senlogement.app-jetified-lifecycle-viewmodel-savedstate-2.7.0-31 C:\Users\N'Tji SANGARE\.gradle\caches\8.12\transforms\fef461bd591dc594ae61038b1b3ad8ee\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\res
+com.example.senlogement.app-debug-32 C:\projetful\senlogement\android\app\src\debug\res
+com.example.senlogement.app-main-33 C:\projetful\senlogement\android\app\src\main\res
+com.example.senlogement.app-pngs-34 C:\projetful\senlogement\build\app\generated\res\pngs\debug
+com.example.senlogement.app-resValues-35 C:\projetful\senlogement\build\app\generated\res\resValues\debug
+com.example.senlogement.app-packageDebugResources-36 C:\projetful\senlogement\build\app\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.senlogement.app-packageDebugResources-37 C:\projetful\senlogement\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.senlogement.app-debug-38 C:\projetful\senlogement\build\app\intermediates\merged_res\debug\mergeDebugResources
+com.example.senlogement.app-debug-39 C:\projetful\senlogement\build\firebase_auth\intermediates\packaged_res\debug\packageDebugResources
+com.example.senlogement.app-debug-40 C:\projetful\senlogement\build\firebase_core\intermediates\packaged_res\debug\packageDebugResources

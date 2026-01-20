@@ -1,58 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'acceuil.dart';
+import 'acceuil.dart'; // Page d’accueil (HomePage)
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  Future<void> login() async {
-    if (emailController.text.isEmpty ||
-        passwordController.text.isEmpty) {
-      _showMessage("Veuillez remplir tous les champs", Colors.red);
-      return;
-    }
-
-    try {
-      await _auth.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      // ✅ Connexion réussie
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
-    } on FirebaseAuthException catch (e) {
-      _showMessage(e.message ?? "Erreur de connexion", Colors.red);
-    }
-  }
-
-  void _showMessage(String message, Color color) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: color),
-    );
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -68,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
 
+          // Contenu du formulaire
           Column(
             children: [
               const SizedBox(height: 80),
@@ -93,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 30),
 
+              // Formulaire container
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -107,20 +81,23 @@ class _LoginPageState extends State<LoginPage> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // Logo
+                        // Nom du service / logo
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Image(
                               image: AssetImage('assets/loge.png'),
                               width: 40,
                               height: 40,
                             ),
-                            SizedBox(height: 5),
+
+                            SizedBox(width: 5),
                             Text(
                               "SenLogement",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
+                                color: Colors.black87,
                               ),
                             ),
                           ],
@@ -128,31 +105,100 @@ class _LoginPageState extends State<LoginPage> {
 
                         const SizedBox(height: 30),
 
-                        // Email
-                        _inputField(
-                          controller: emailController,
-                          label: "Email",
-                          icon: Icons.email_outlined,
+                        // Email field
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(
+                              255,
+                              153,
+                              149,
+                              149,
+                            )!.withOpacity(0.7), // fond semi-transparent
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 6,
+                                offset: Offset(
+                                  0,
+                                  3,
+                                ), // légère ombre pour effet flottant
+                              ),
+                            ],
+                          ),
+                          child: TextField(
+                            controller: emailController,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              labelText: "Email",
+                              prefixIcon: Icon(Icons.email_outlined),
+                            ),
+                          ),
                         ),
 
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 40),
 
-                        // Password
-                        _inputField(
-                          controller: passwordController,
-                          label: "Mot de passe",
-                          icon: Icons.lock_outline,
-                          isPassword: true,
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(
+                              255,
+                              125,
+                              123,
+                              123,
+                            )!.withOpacity(0.7), // fond semi-transparent
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 6,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextField(
+                            controller: passwordController,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              labelText: "PassWord",
+                              prefixIcon: Icon(Icons.lock_outline),
+                              suffixIcon: Icon(Icons.visibility_off_outlined),
+                            ),
+                          ),
                         ),
 
-                        const SizedBox(height: 50),
+                        const SizedBox(height: 60),
 
-                        // Login Button
+                        // Register Button
                         GestureDetector(
-                          onTap: login,
+                          onTap: () {
+                            if (emailController.text.isEmpty ||
+                                passwordController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Veuillez remplir tous les champs.",
+
+                                    // value pour controler les champs
+                                  ),
+                                  backgroundColor: Colors.redAccent,
+                                ),
+                              );
+                            } else {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePage(),
+                                ),
+                              );
+                            }
+                          },
                           child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 50),
                             height: 50,
-                            margin: const EdgeInsets.symmetric(horizontal: 50),
+                            width: double.infinity,
                             decoration: BoxDecoration(
                               color: const Color(0xFFB59F2C),
                               borderRadius: BorderRadius.circular(12),
@@ -162,8 +208,8 @@ class _LoginPageState extends State<LoginPage> {
                                 "Sign in",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                               ),
                             ),
@@ -172,24 +218,12 @@ class _LoginPageState extends State<LoginPage> {
 
                         const SizedBox(height: 30),
 
-                        // Register link
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                const RegisterPage(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "Register",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 181, 156, 32),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 23,
-                            ),
+                        const Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 181, 156, 32),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 23,
                           ),
                         ),
                       ],
@@ -200,37 +234,6 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _inputField({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    bool isPassword = false,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 153, 149, 149).withOpacity(0.7),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: TextField(
-        controller: controller,
-        obscureText: isPassword,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          labelText: label,
-          prefixIcon: Icon(icon),
-        ),
       ),
     );
   }
